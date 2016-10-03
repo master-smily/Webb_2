@@ -16,3 +16,7 @@ body {
     max-height: 900px;
     margin: auto;
 }
+
+header {
+    background-color: aqua;
+}
