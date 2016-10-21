@@ -1,22 +1,32 @@
 h1 {
-    font-style: oblique;
-    color: white;
-    align-items: center;
+  font-style: oblique;
+  color: white;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
 }
 
 html {
-    background-color: black;
-    margin: 0;
+  background-color: black;
+  margin: 0;
 }
 
 body {
-    background-color: forestgreen;
-    width: 900px;
-    min-height: 300px;
-    max-height: 900px;
-    margin: auto;
+  background-color: forestgreen;
+  width: 900px;
+  min-height: 300px;
+  max-height: 900px;
+  margin: auto;
 }
 
 header {
-    background-color: aqua;
+  background-color: aqua;
+  height: 100px;
+  text-align: center;
+}
+
+div {
+  background-color: blueviolet;
+  height: 300px;
 }

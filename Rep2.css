@@ -1,0 +1,27 @@
+body {
+  width: 800px;
+}
+
+header {
+  background-color: dimgrey;
+  font-size: 50px;
+  text-align: center;
+}
+
+div.left {
+  background-color: chartreuse;
+  float: left;
+}
+
+div.right {
+  background-color: fuchsia;
+  float: right;
+}
+
+div {
+  width: 400px;
+  min-height: 400px;
+}
+p {
+  margin: 10px;
+}
