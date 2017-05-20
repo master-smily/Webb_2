@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<title>Webb 2: Mines</title>
+<script src="../Scripts/Block.js"></script>
+<script src="../libraries/p5.min.js"></script>
+<script src="../libraries/p5.dom.min.js"></script>
+<link href="../libraries/w3.css" rel="stylesheet"/>
+<link href="mines.css" rel="stylesheet"/>
+
+<!--settings dialog-->
+<div id="settings" class="w3-modal">
+  <div class="w3-modal-content">
+    <form action="../mines" class="w3-form">
+      <span onclick="settings('close');" class="w3-button w3-display-topright">&bigotimes;</span>
+
+      <label class="w3-label">width<br/></label>
+      <input type="number" name="width" value="10" title="width" class="w3-input w3-border"/><br>
+
+      <label class="w3-label">height<br/></label>
+      <input type="number" name="height" value="10" title="height" class="w3-input w3-border"/><br>
+
+      <label class="w3-label">scale<br/></label>
+      <input type="number" name="scale" value="60" title="scale" class="w3-input w3-border"><br>
+
+      <label class="w3-label">number of bombs<br/></label>
+      <input type="number" name="bombs" value="10" title="number of bombs"
+             class="w3-input w3-border"/><br>
+      <input type="submit">
+    </form>
+  </div>
+</div>
+
+<!--p5 canvas location-->
+<div id="canvasDiv"></div>
+
+<!--buttons and information-->
+<div id="menu">
+  <button class="w3-button" onclick="settings('open');">Settings</button>
+  <button onclick="location.reload()" class="w3-button">Restart</button>
+  <a href="../Scripts" class="w3-button">back</a>
+  <br>Left-click to clear block.
+  <br>Middle-click to mark block.
+</div>
+
+<!--script is run last so that canvasDiv exist when setup() tries to place canvas in it-->
+<script src="../Scripts/mines.js"></script>

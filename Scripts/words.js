@@ -1,4 +1,5 @@
 function words(input, output) {
+  /**takes one string of words an shift letters until it another word*/
   var                            // declare several things at once.
     active = input.split(''), // separate input string into array with one letter per index
     terminal = document.getElementById("term"); // declare terminal paragraph

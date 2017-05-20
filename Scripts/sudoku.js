@@ -8,7 +8,9 @@ var mouseX, mouseY, xId, yId, xCord, yCord, i, map, random, createCanvas;
 
 //noinspection JSUnusedGlobalSymbols
 function setup() {
-  /* setup p5.js canvas,*/
+  /**Run by p5.js at script start.
+   * Creates canvas and creates 9x9 grid with null values in canvas,
+   * separates grid into 9 3x3 grids.*/
   createCanvas(668, 668).parent('canvas');
   for (let i = 1; i < 10; i++) {
     for (let j = 1; j < 10; j++) {
@@ -16,8 +18,7 @@ function setup() {
         x: i,
         y: j,
         value: null
-      }); // 9x9 grid mapped to canvas, drawn using rectangle function: rect(topX, topY,
-          // width, height)
+      });
       let
         xCord = map(i, 1, 9, 0, 600),
         yCord = map(j, 1, 9, 0, 600);
@@ -33,10 +34,12 @@ function setup() {
   data.forEach(sortData);
 }
 function getId(x, y) {
-  /*mouse coordinates mapped to a value between 1-9, rounded upwards*/
+  /**Gets mouse coordinates mapped to a value between 1-9, rounded upwards.
+   * If x and y specified uses that instead, then calculates screen coordinates
+   * by mapping block pos to value between 0 and 600.*/
   xId = x || map(mouseX, 0, 600, 1, 9);
-  xId = Math.floor(xId);
   yId = y || map(mouseY, 0, 600, 1, 9);
+  xId = Math.floor(xId);
   yId = Math.floor(yId);
   xCord = map(xId, 1, 9, 0, 600);
   yCord = map(yId, 1, 9, 0, 600);
@@ -44,6 +47,7 @@ function getId(x, y) {
 }
 
 function displayText(background, foreground) {
+  /**Displays text at screen pos if there is a value.*/
   fill(background);
   rect(xCord, yCord, 600 / 9, 600 / 9);
   if (data[i].value !== null) {
@@ -55,6 +59,7 @@ function displayText(background, foreground) {
 
 //noinspection JSUnusedGlobalSymbols
 function onCanvas() {
+  /**@returns true if mouse on canvas*/
   if (mouseX > 0 && mouseX < width) {
     if (mouseY > 0 && mouseY < height) {
       return true
@@ -65,7 +70,7 @@ function onCanvas() {
 }
 //noinspection JSUnusedGlobalSymbols
 function draw() {
-  /*part of p5.js, loops continually*/
+  /**part of p5.js, loops continually. draws the block where mouse is on dark.*/
   if (onCanvas()) {
     getId();
     if (cache.indexOf(xId + 'x' + yId) === -1) {
@@ -83,7 +88,7 @@ function draw() {
 
 //noinspection JSUnusedGlobalSymbols
 function mouseClicked() {
-  /*when mouse is clicked: update value in data*/
+  /**when mouse is clicked: update value in data*/
   if (onCanvas()) {
     getId();
     let newVal = Math.round(prompt("number between 1-9")); //Math.round so that nobody uses decimals
@@ -99,13 +104,15 @@ function mouseClicked() {
 }
 
 function getIndex(element, index) {
-  /*if id established getId matches x and y in Object, set i to index*/
+  /**if id established getId matches x and y in Object, set i to index*/
   if (element.x === xId && element.y === yId) {
     i = index;
   }
 }
 
 function sortData(element, index, array) {
+  /**loops through array and decide which group and index they have,
+   * sets properties to that.*/
   if (element.x > 0 && element.x < 4) {
     if (element.y > 0 && element.y < 4) {
       array[index].block = 1;
@@ -135,6 +142,7 @@ function sortData(element, index, array) {
 }                  // even if it retrieved from somewhere else, (like stack)
 
 function emptyValue(element, index) {
+  /**checks which cells are empty and add their index to emptyI*/
   if (index === 0) {
     emptyI = []
   }
@@ -144,6 +152,7 @@ function emptyValue(element, index) {
 }
 
 function checkValid(cell, num) {
+  /**@returns true if num is allowed at cell according to sudoku rules.*/
   let active = [];
   for (let i = 0; i < data.length; i++) {
     if (data[i].x !== cell.x || data[i].y !== cell.y) {
@@ -162,6 +171,10 @@ function checkValid(cell, num) {
 }
 
 function createRaw() {
+  /**Creates the sudoku data.
+   * Selects a index, if selected cell has no value check if there are any
+   * valid values. if there are repeat until there are no empty cells.
+   * If there are none go back one step and try remaining numbers*/
   let count = 0;
   noLoop();
   let done = false;
@@ -197,6 +210,9 @@ function createRaw() {
 }
 
 function selectIndex() {
+  /**Select which cell to check and which numbers to check.
+   * If last iteration found no valid number select last cell,
+   * don't check the last number. Else select random empty cell and all numbers*/
   let vals, i;
   vals = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   if (conflict) {

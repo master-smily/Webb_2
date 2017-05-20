@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>Webb 2: Online White Board</title>
+<script src="../libraries/p5.min.js"></script>
+<link rel="stylesheet" href="../libraries/w3.css">
+
+
+<header class="w3-container">
+  <b>Online White Board</b>
+</header>
+
+<div id="canvas"></div>
+
+<!--slider used to set stroke weight.-->
+<form style="float: left">
+  <input type="range" title="size" value="10" max="60" min="3">
+</form>
+<a href="../">back</a>
+
+<!--script is run last so that canvas exist when setup() tries to place canvas in it-->
+<script src="../Scripts/board.js"></script>

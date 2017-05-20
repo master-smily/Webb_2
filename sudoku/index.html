@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>Webb 2: Sudoku</title>
+<script language="javascript" type="text/javascript" src="../libraries/p5.min.js"></script>
+<!-- uncomment lines below to include extra p5 libraries -->
+<script language="javascript" src="../libraries/p5.dom.min.js"></script>
+<!--<script language="javascript" src="libraries/p5.sound.min.js"></script>-->
+<link rel="stylesheet" href="../libraries/w3.css">
+<script>
+  function createStart() {
+    const message = 'EXPERIMENTAL! Warning this function is experimental and your browser will most likely crash. ' +
+      'Do you want to continue?';
+    if (confirm(message)) {
+      createRaw()
+    }else {
+      alert('')
+    }
+  }
+</script>
+<div style="float: left;" class="w3-container">
+  <h5>Complete:</h5>
+  input numbers<br>
+  check if number is valid<br><br><br>
+  <div class="w3-topbar w3-panel">
+    <button onclick="createStart()" class="w3-button w3-margin-top">Generate sudoku</button>
+  </div>
+  <a href="../Scripts">back</a>
+</div>
+
+<!--script is run last so that canvas exist when setup() tries to place canvas in it-->
+<div id="canvas"></div>
+<script src="../"></script>
