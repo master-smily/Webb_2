@@ -5,27 +5,43 @@ var mouseX, mouseY, pmouseX, pmouseY;
 var windowWidth, windowHeight, w, createCanvas;
 
 //noinspection JSUnresolvedFunction
-
-function setup(){
+function setup() {
   /**creates canvas with white background color*/
-  createCanvas(windowWidth-100, windowHeight-40).parent('canvas');
+  createCanvas(windowWidth - 100, windowHeight - 70).parent('canvas');
   //cnv.parent('canvas');
   background(240);
 }
 
 //noinspection JSUnusedGlobalSymbols
-function touchStarted() {
-  /**Run by p5.js when bord is touched(with mouse or touchscreen).
-   * Sets stroke weight according to slider at the bottom, draws line from
-   * current mouse pos to previous mouse pos.*/
-  w = document.forms[0][0].value;
-  strokeWeight(w)
-  line(mouseX, mouseY, pmouseX, pmouseY);
+function draw() {
+  /**Runs automatically by p5.js at each frame.
+   * Sets stroke weight according to slider at the bottom, draws line between
+   * current mouse pos and previous mouse pos.*/
+  if (onCanvas() && mouseIsPressed) {
+    w = document.forms[0][0].value;
+    strokeWeight(w)
+    line(mouseX, mouseY, pmouseX, pmouseY);
+  }
 }
 //noinspection JSUnusedGlobalSymbols
-function touchMoved() {
-  /**Until not touching board, draw lines as in touchStarted()*/
-  line(mouseX, mouseY, pmouseX, pmouseY);
-  // prevent default
+function mousePressed() {
+  /**TODO: comment*/
+  if (!onCanvas()) {
+    noLoop()
+  }
+}
+
+function mouseReleased() {
+  loop()
+}
+
+function onCanvas() {
+  /**@returns true if mouse on canvas*/
+  if (mouseX > 0 && mouseX < width) {
+    if (mouseY > 0 && mouseY < height) {
+      return true
+    }
+  }
   return false;
+  //mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height;
 }
