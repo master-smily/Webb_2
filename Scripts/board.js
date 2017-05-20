@@ -1,5 +1,6 @@
 /**
  * Created by William on 18/01 2017.
+ * Online White Board
  */
 var mouseX, mouseY, pmouseX, pmouseY;
 var windowWidth, windowHeight, w, createCanvas;
@@ -19,19 +20,20 @@ function draw() {
    * current mouse pos and previous mouse pos.*/
   if (onCanvas() && mouseIsPressed) {
     w = document.forms[0][0].value;
-    strokeWeight(w)
+    strokeWeight(w);
     line(mouseX, mouseY, pmouseX, pmouseY);
   }
 }
 //noinspection JSUnusedGlobalSymbols
 function mousePressed() {
-  /**TODO: comment*/
+  /**if mouse pressed outside canvas stop draw loop*/
   if (!onCanvas()) {
     noLoop()
   }
 }
 
 function mouseReleased() {
+  /**When mouse released resume draw loop*/
   loop()
 }
 
